@@ -13,7 +13,7 @@ pygame_gui.elements.UILabel(relative_rect=pygame.Rect((300, 60), (200, 40)),
                              text='Wybierz port startowy:',
                              manager=manager)
 
-start_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Katar', 'Porto', 'Malmo'],
+start_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Malmo', 'Goteborg', 'Tallin'],
                                     starting_option='Gdynia',
                                     relative_rect=pygame.Rect((300, 100), (200, 40)),
                                     manager=manager)
@@ -22,8 +22,8 @@ pygame_gui.elements.UILabel(relative_rect=pygame.Rect((300, 140), (200, 40)),
                              text='Wybierz port docelowy:',
                              manager=manager)
 
-final_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Katar', 'Porto', 'Malmo'],
-                                    starting_option='Katar',
+final_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Malmo', 'Goteborg', 'Tallin'],
+                                    starting_option='Malmo',
                                     relative_rect=pygame.Rect((300, 180), (200, 40)),
                                     manager=manager)
 ## Wybierz ładunek
