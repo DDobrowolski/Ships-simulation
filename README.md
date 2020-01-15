@@ -1,4 +1,4 @@
 # Symulacja Okrętów - dokumentacja
 ### Programowanie obiektowe I, eProjekt
-### Damian Dobrowolski, Adam Balcerzak
-### Informatyka AHE, semestr III
+<br/>Damian Dobrowolski, Adam Balcerzak
+<br/>Informatyka AHE, semestr III
