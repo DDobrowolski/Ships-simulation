@@ -7,22 +7,22 @@ manager = pygame_gui.UIManager((800, 600))
 
 background = pygame.Surface((800, 600))
 background.fill(manager.ui_theme.get_colour(None, None, 'dark_bg'))
-
+## Wybierz port startowy
 start_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Katar', 'Porto', 'Malmo'],
                                     starting_option='Gdynia',
                                     relative_rect=pygame.Rect((300, 100), (250, 40)),
                                     manager=manager)
-
+## Wybierz port docelowy
 final_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Katar', 'Porto', 'Malmo'],
                                     starting_option='Katar',
                                     relative_rect=pygame.Rect((300, 150), (250, 40)),
                                     manager=manager)
-
+## Wybierz ładunek
 select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Drewno', 'Stal', 'Ropa', 'Piasek'],
                                     starting_option='Drewno',
                                     relative_rect=pygame.Rect((300, 200), (250, 40)),
                                     manager=manager)
-
+## Start symulacji
 start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((300, 280), (250, 40)),
                                             text='Rozpocznij symulację',
                                             manager=manager)
