@@ -7,23 +7,47 @@ manager = pygame_gui.UIManager((800, 600))
 
 background = pygame.Surface((800, 600))
 background.fill(manager.ui_theme.get_colour(None, None, 'dark_bg'))
+
 ## Wybierz port startowy
+pygame_gui.elements.UILabel(relative_rect=pygame.Rect((300, 60), (250, 40)),
+                             text='Wybierz port startowy:',
+                             manager=manager)
+
 start_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Katar', 'Porto', 'Malmo'],
                                     starting_option='Gdynia',
                                     relative_rect=pygame.Rect((300, 100), (250, 40)),
                                     manager=manager)
 ## Wybierz port docelowy
+pygame_gui.elements.UILabel(relative_rect=pygame.Rect((300, 140), (250, 40)),
+                             text='Wybierz port docelowy:',
+                             manager=manager)
+
 final_point = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Katar', 'Porto', 'Malmo'],
                                     starting_option='Katar',
-                                    relative_rect=pygame.Rect((300, 150), (250, 40)),
+                                    relative_rect=pygame.Rect((300, 180), (250, 40)),
                                     manager=manager)
 ## Wybierz ładunek
+pygame_gui.elements.UILabel(relative_rect=pygame.Rect((300, 220), (250, 40)),
+                             text='Wybierz rodzaj ładunku:',
+                             manager=manager)
+
 select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Drewno', 'Stal', 'Ropa', 'Piasek'],
                                     starting_option='Drewno',
-                                    relative_rect=pygame.Rect((300, 200), (250, 40)),
+                                    relative_rect=pygame.Rect((300, 260), (250, 40)),
                                     manager=manager)
+
+## Wybierz statek
+pygame_gui.elements.UILabel(relative_rect=pygame.Rect((300, 300), (250, 40)),
+                             text='Wybierz statek:',
+                             manager=manager)
+
+select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Piorun', 'Burza', 'Wilk', 'Sztygar'],
+                                    starting_option='Piorun',
+                                    relative_rect=pygame.Rect((300, 340), (250, 40)),
+                                    manager=manager)
+
 ## Start symulacji
-start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((300, 280), (250, 40)),
+start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((300, 420), (250, 40)),
                                             text='Rozpocznij symulację',
                                             manager=manager)
 
@@ -48,6 +72,7 @@ while is_running:
     manager.update(time_delta)
 
     window_surface.blit(background, (0, 0))
+
     manager.draw_ui(window_surface)
 
     pygame.display.update()
