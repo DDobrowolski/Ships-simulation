@@ -6,9 +6,9 @@ class Point:
         self._position = Vector2(position)
 
     @property
-    def position():
+    def position(self):
         return self._position
 
     @position.setter
     def position(self, position):
-        self._position = position
+        self._position = Vector2(position)
