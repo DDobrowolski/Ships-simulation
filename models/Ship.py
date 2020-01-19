@@ -1,6 +1,8 @@
 from models.Point import Point
 from helpers.Vector2 import Vector2
 from pygame import time
+import csv
+from random import randint
 
 
 class Ship(Point):
@@ -25,5 +27,19 @@ class Ship(Point):
         time_passed = self._clock.tick()
         time_passed_seconds = time_passed / 1000.0
         distance_moved = time_passed_seconds * self._speed
-        if(float(round(self.position[0])) != self._destination.get_x() or float(round(self.position[1])) != self._destination.get_y()):
+        if not self._is_in_destination():
             self._position += self._heading * distance_moved
+        else:
+            self._generate_new_destination()
+            self.move()
+
+    def _is_at_destination(self):
+        return float(round(self.position[0])) == self._destination.get_x() and float(round(self.position[1])) == self._destination.get_y()
+
+    def _generate_new_destination(self):
+        with open('const/ports.csv') as csv_file:
+            reader = list(csv.reader(csv_file, delimiter=','))
+            max_index = len(reader)-1
+            new_index = randint(1, max_index)
+            self._destination = Vector2(
+                (reader[new_index][1], reader[new_index][2]))
