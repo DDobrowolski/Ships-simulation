@@ -16,7 +16,7 @@ pygame.display.set_caption('Symulator okrętów')
 
 
 def main():
-    Sztygar = Ship((220, 80), (650, 600))
+    Sztygar = Ship((220, 80), (650, 600), None, None, None, None, None, None)
 
     # ładowanie tła z mapą
     background = pygame.image.load('graphics/mapa.png').convert()
@@ -42,22 +42,16 @@ def main():
     Piorun_img.set_colorkey(BLACK)
     Piorun_rect = Piorun_img.get_rect(x=830, y=600)
 
-    destination = Vector2((0, 0))
-    speed = 250
-    heading = Vector2()
-
     while True:
         for event in pygame.event.get():
             if event.type == MOUSEBUTTONDOWN:
-                destination = Vector2((650, 600))
-                heading = Vector2.from_points(position, destination)
-                heading.normalize()
+                Sztygar.move()
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
         # moved = move(Sztygar_rect, {'x': 100, 'y': 600})
-
+        Sztygar.update()
        # wyświetlanie
         DISPLAYSURF.fill(BLACK)
 
