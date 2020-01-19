@@ -17,53 +17,49 @@ pygame.display.set_caption('Symulator okrętów')
 
 def main():
     Sztygar = Ship((220, 80), (650, 600), None, None, None, None, None, None)
+    Wilk = Ship((550, 80), (220, 80), None, None, None, None, None, None)
+    Burza = Ship((200, 680), (550, 80), None, None, None, None, None, None)
+    Piorun = Ship((830, 600), (200, 680), None, None, None, None, None, None)
 
     # ładowanie tła z mapą
     background = pygame.image.load('graphics/mapa.png').convert()
     background_rect = background.get_rect()
 
-    # ładowanie statków
-    Sztygar_img = pygame.image.load('graphics/ship.png').convert()
-    Sztygar_img = pygame.transform.scale(Sztygar_img, (120, 37))
-    Sztygar_img.set_colorkey(BLACK)
-
-    Wilk_img = pygame.image.load('graphics/ship.png').convert()
-    Wilk_img = pygame.transform.scale(Wilk_img, (120, 37))
-    Wilk_img.set_colorkey(BLACK)
-    Wilk_rect = Wilk_img.get_rect(x=550, y=80)
-
-    Burza_img = pygame.image.load('graphics/ship.png').convert()
-    Burza_img = pygame.transform.scale(Burza_img, (120, 37))
-    Burza_img.set_colorkey(BLACK)
-    Burza_rect = Burza_img.get_rect(center=(290, 680))
-
-    Piorun_img = pygame.image.load('graphics/ship.png').convert()
-    Piorun_img = pygame.transform.scale(Piorun_img, (120, 37))
-    Piorun_img.set_colorkey(BLACK)
-    Piorun_rect = Piorun_img.get_rect(x=830, y=600)
+    # ładowanie obrazu statku
+    ship_img = pygame.image.load('graphics/ship.png').convert()
+    ship_img = pygame.transform.scale(ship_img, (120, 37))
+    ship_img.set_colorkey(BLACK)
 
     while True:
         for event in pygame.event.get():
             if event.type == MOUSEBUTTONDOWN:
-                Sztygar.move()
+                for ship in (Sztygar, Wilk, Burza, Piorun):
+                    ship.move()
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
-        # moved = move(Sztygar_rect, {'x': 100, 'y': 600})
-        Sztygar.update()
+        for ship in (Sztygar, Wilk, Burza, Piorun):
+            ship.update()
        # wyświetlanie
         DISPLAYSURF.fill(BLACK)
 
         DISPLAYSURF.blit(background, background_rect)
 
         # wyświetlanie elementów
-        Sztygar_rect = Sztygar_img.get_rect(
+        Sztygar_rect = ship_img.get_rect(
             x=Sztygar.position.get_x(), y=Sztygar.position.get_y())
-        DISPLAYSURF.blit(Sztygar_img, Sztygar_rect)
-        DISPLAYSURF.blit(Wilk_img, Wilk_rect)
-        # DISPLAYSURF.blit(Burza_img, Burza_rect)
-        # DISPLAYSURF.blit(Piorun_img, Piorun_rect)
+        Wilk_rect = ship_img.get_rect(
+            x=Wilk.position.get_x(), y=Wilk.position.get_y())
+        Burza_rect = ship_img.get_rect(
+            x=Burza.position.get_x(), y=Burza.position.get_y())
+        Piorun_rect = ship_img.get_rect(
+            x=Piorun.position.get_x(), y=Piorun.position.get_y())
+
+        DISPLAYSURF.blit(ship_img, Sztygar_rect)
+        DISPLAYSURF.blit(ship_img, Wilk_rect)
+        DISPLAYSURF.blit(ship_img, Burza_rect)
+        DISPLAYSURF.blit(ship_img, Piorun_rect)
 
         pygame.display.flip()
 
