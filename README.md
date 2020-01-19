@@ -5,3 +5,4 @@
 Lista użytych bibliotek:
 - PyGame
 - PyGame GUI
+- pep8
