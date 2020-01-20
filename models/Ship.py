@@ -34,7 +34,7 @@ class Ship(Point):
             self.move()
 
     def _is_at_destination(self):
-        return float(round(self.position[0])) == self._destination.get_x() and float(round(self.position[1])) == self._destination.get_y()
+        return self._position.get_distance_to(self._destination) < 5
 
     def _generate_new_destination(self):
         with open('const/ports.csv') as csv_file:
