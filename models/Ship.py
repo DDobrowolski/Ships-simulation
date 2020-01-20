@@ -27,7 +27,7 @@ class Ship(Point):
         time_passed = self._clock.tick()
         time_passed_seconds = time_passed / 1000.0
         distance_moved = time_passed_seconds * self._speed
-        if not self._is_in_destination():
+        if not self._is_at_destination():
             self._position += self._heading * distance_moved
         else:
             self._generate_new_destination()
