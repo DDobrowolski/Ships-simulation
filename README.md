@@ -5,7 +5,7 @@
 
 ### Lista użytych bibliotek:
 - PyGame (biblioteka z podstawowymi instrukcjami do gier w Pythonie)
-- PyGame GUI (biblioteka graficzna do GUI)
+- PyGame GUI (biblioteka graficzna do GUI rozszerzająca działanie PyGame)
 - pep8 (formatowanie kodu)
 
 ### Lista użytego oprogramowania:
