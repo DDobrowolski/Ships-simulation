@@ -3,6 +3,7 @@ import sys
 from pygame import *
 from helpers.Vector2 import Vector2
 from models.Ship import Ship
+from helpers.load_ports import load_from_csv
 
 pygame.init()
 
@@ -16,19 +17,22 @@ pygame.display.set_caption('Symulator okrętów')
 
 
 def main():
+    # Instancje portów
+    [Gdynia, Malmo, Goteborg, Tallin] = load_from_csv()
+    # Instancje statków
     Sztygar = Ship((220, 80), (650, 600), None, None, None, None, None, None)
     Wilk = Ship((550, 80), (220, 80), None, None, None, None, None, None)
     Burza = Ship((200, 680), (550, 80), None, None, None, None, None, None)
     Piorun = Ship((830, 600), (200, 680), None, None, None, None, None, None)
 
-    # ładowanie tła z mapą
-    background = pygame.image.load('graphics/mapa.png').convert()
-    background_rect = background.get_rect()
-
     # ładowanie obrazu statku
     ship_img = pygame.image.load('graphics/ship.png').convert()
     ship_img = pygame.transform.scale(ship_img, (120, 37))
     ship_img.set_colorkey(BLACK)
+
+    # ładowanie tła z mapą
+    background = pygame.image.load('graphics/mapa.png').convert()
+    background_rect = background.get_rect()
 
     while True:
         for event in pygame.event.get():
