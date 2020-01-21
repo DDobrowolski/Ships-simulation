@@ -11,3 +11,6 @@
 - Visual Studio Code (idle)
 - Python 3.8.2 (środowisko programistyczne)
 - Tiled Map Editor (wgranie tekstur i generowanie obszaru do mapy)
+
+#### Operacje na plikach *.csv:
+- Wczytywanie współrzędnych portów z pliku const/ports.csv
