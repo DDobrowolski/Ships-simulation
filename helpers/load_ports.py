@@ -10,5 +10,5 @@ def load_from_csv():
             if row[0] == 'name':
                 continue
             ports.append(
-                Port((row[1], row[2]), 5, None, None))
+                Port((row[1], row[2]), row[0],  5, None, None))
     return ports
