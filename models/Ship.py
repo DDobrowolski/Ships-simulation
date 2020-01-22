@@ -13,6 +13,7 @@ class Ship(Point):
         self._port = port
         self._owner = owner
         self._capacity = capacity
+        self._containers = []
         self._max_fuel = max_fuel
         self._current_fuel = current_fuel
         self._condition = condition
@@ -35,13 +36,28 @@ class Ship(Point):
         if not self._is_at_destination():
             self._position += self._heading * distance_moved
         else:
-            if self._destination.free_docks > 0:
-                pass
-                # containers logic...
+            if self._destination.free_docks == 0:
+                self._sail_out()
+                return
             if self._delay == 0:
                 self._dock()
+                self._unload_containers()
             elif (time.get_ticks() / 1000 - self._delay) >= 5:
                 self._sail_out()
+
+    def _unload_containers(self):
+        print(self._name, 'containers count before unloading:',
+              len(self._containers))
+        self._destination.add_specific_containers_in(
+            [c for c in self._containers if c.destination_port is self._destination])
+        self._containers = [
+            c for c in self._containers if c.destination_port is not self._destination]
+        print(self._name, 'containers count after unloading:',
+              len(self._containers))
+
+    def _load_containers(self, destination):
+        self._containers = self._destination.get_specific_containers_out(
+            destination)
 
     def _dock(self):
         self._destination.free_docks -= 1
@@ -54,7 +70,11 @@ class Ship(Point):
         self._destination.free_docks += 1
         print(f"{self.name} is sailing out...", self._destination.name, 'free docks: ',
               self._destination.free_docks)
+
         self._generate_new_destination()
+        self._load_containers(self._destination)
+        print(self._name, 'containers count after loading:', len(self._containers))
+
         self.move()
 
     def _is_at_destination(self):

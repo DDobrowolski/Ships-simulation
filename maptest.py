@@ -17,7 +17,7 @@ pygame.display.set_caption('Symulator okrętów')
 
 
 def main():
-    # Instancje portów
+    # Instancje portów ładowane z csv
     available_ports = [Gdynia, Malmo, Goteborg, Tallin] = load_from_csv()
     # Instancje statków
     Sztygar = Ship('Sztygar', (220, 80), Malmo, None, None,

@@ -2,7 +2,7 @@ from models.Point import Point
 
 
 class Port(Point):
-    def __init__(self, pos, name, free_docks, containers_out, containers_in):
+    def __init__(self, pos, name, free_docks, containers_out, containers_in=[]):
         super().__init__(pos, name)
         self._free_docks = free_docks
         self._containers_out = containers_out
@@ -15,3 +15,28 @@ class Port(Point):
     @free_docks.setter
     def free_docks(self, free_docks):
         self._free_docks = free_docks
+
+    @property
+    def containers_out(self):
+        return self._containers_out
+
+    @containers_out.setter
+    def containers_out(self, containers_out):
+        self._containers_out = containers_out
+
+    @property
+    def containers_in(self):
+        return self._containers_in
+
+    def _remove_specific_containers_out(self, destination):
+        self._containers_out = [
+            c for c in self._containers_out if c.destination_port is not destination]
+
+    def get_specific_containers_out(self, destination):
+        output = [
+            c for c in self._containers_out if c.destination_port is destination]
+        self._remove_specific_containers_out(destination)
+        return output
+
+    def add_specific_containers_in(self, containers):
+        self._containers_in += containers
