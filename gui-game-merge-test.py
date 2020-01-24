@@ -71,7 +71,7 @@ def main():
         DISPLAYSURF.blit(ship_img, Burza_rect)
         DISPLAYSURF.blit(ship_img, Piorun_rect)
 
-        manager.draw_ui(window_surface)
+        manager.draw_ui(DISPLAYSURF)
 
         pygame.display.flip()
 
