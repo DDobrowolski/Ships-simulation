@@ -98,6 +98,36 @@ def main():
                              text='..............................................',
                              manager=manager)
 
+    ## Wybierz port
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 400), (250, 40)),
+                             text='Wybierz port:',
+                             manager=manager)
+
+    select_port = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Malmo', 'Goteborg', 'Tallin'],
+                                    starting_option='Gdynia',
+                                    relative_rect=pygame.Rect((1075, 440), (250, 40)),
+                                    manager=manager)
+
+    ## Wybierz statek
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 480), (250, 40)),
+                             text='Wybierz statek:',
+                             manager=manager)
+
+    select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Piorun', 'Burza', 'Wilk', 'Sztygar'],
+                                    starting_option='Piorun',
+                                    relative_rect=pygame.Rect((1075, 520), (250, 40)),
+                                    manager=manager)
+
+    ## Wybierz armatora
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 560), (250, 40)),
+                             text='Wybierz armatora:',
+                             manager=manager)
+
+    select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Armator 1', 'Armator 2', 'Armator 3', 'Armator 4'],
+                                    starting_option='Armator 1',
+                                    relative_rect=pygame.Rect((1075, 600), (250, 40)),
+                                    manager=manager)                                    
+
     ## Start/stop symulacji
     start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 730), (250, 40)),
                                             text='Rozpocznij symulację',
