@@ -42,6 +42,15 @@ def main():
     
     ## Elementy GUI
 
+    ## Armator 1
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 10), (250, 40)),
+                             text='ARMATOR 1',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 40), (250, 40)),
+                             text='Pieniądze:',
+                             manager=manager)
+
     ## Start/stop symulacji
     start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 730), (250, 40)),
                                             text='Rozpocznij symulację',
