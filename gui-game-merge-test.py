@@ -9,13 +9,13 @@ from helpers.load_ports import load_from_csv
 pygame.init()
 
 WINDOWWIDTH = 1366
-WINDOWHEIGHT = 950
+WINDOWHEIGHT = 960
 
 BLACK = (0, 0, 0)
 
 DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 pygame.display.set_caption('Symulator okrętów')
-manager = pygame_gui.UIManager((1366, 950), 'graphics/theme.json')
+manager = pygame_gui.UIManager(((WINDOWWIDTH, WINDOWHEIGHT)), 'graphics/theme.json')
 
 
 def main():
@@ -129,9 +129,41 @@ def main():
                                     manager=manager)                                    
 
     ## Start/stop symulacji
-    start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 730), (250, 40)),
+    start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 695), (250, 40)),
                                             text='Rozpocznij symulację',
                                             manager=manager)
+
+    ## Statystyki Gdynia
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((0, 768), (180, 40)),
+                             text='Statystyki Gdynia:',
+                             manager=manager)
+    pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
+                            relative_rect=pygame.Rect((5, 805), (325, 150)),
+                            manager=manager)
+    ## Statystyki Malmo
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((335, 768), (180, 40)),
+                             text='Statystyki Malmo:',
+                             manager=manager)
+    pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
+                            relative_rect=pygame.Rect((345, 805), (325, 150)),
+                            manager=manager)
+
+    ## Statystyki Goteborg
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((680, 768), (180, 40)),
+                             text='Statystyki Goteborg:',
+                             manager=manager)
+    pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
+                            relative_rect=pygame.Rect((685, 805), (325, 150)),
+                            manager=manager)
+
+    ## Statystyki Tallin
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1015, 768), (180, 40)),
+                             text='Statystyki Tallin:',
+                             manager=manager)
+    pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
+                            relative_rect=pygame.Rect((1025, 805), (325, 150)),
+                            manager=manager)
+
 
     while True:
         for event in pygame.event.get():
