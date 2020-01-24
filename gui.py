@@ -67,7 +67,7 @@ while is_running:
                 event.ui_element == start_simulation):
             print('Start symulacji!')
 
-        manager.process_events(event)
+    manager.process_events(event)
 
     manager.update(time_delta)
 
