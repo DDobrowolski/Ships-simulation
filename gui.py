@@ -46,7 +46,7 @@ select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Piorun', 'Burza
                                     relative_rect=pygame.Rect((300, 340), (200, 40)),
                                     manager=manager)
 
-## Start symulacji
+## Start/stop symulacji
 start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((275, 420), (250, 40)),
                                             text='Rozpocznij symulację',
                                             manager=manager)

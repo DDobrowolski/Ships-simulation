@@ -1,5 +1,6 @@
 import pygame
 import sys
+import pygame_gui
 from pygame import *
 from helpers.Vector2 import Vector2
 from models.Ship import Ship
