@@ -8,14 +8,14 @@ from helpers.load_ports import load_from_csv
 
 pygame.init()
 
-WINDOWWIDTH = 1024
-WINDOWHEIGHT = 768
+WINDOWWIDTH = 1366
+WINDOWHEIGHT = 1000
 
 BLACK = (0, 0, 0)
 
 DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 pygame.display.set_caption('Symulator okrętów')
-manager = pygame_gui.UIManager((800, 600), 'graphics/theme.json')
+manager = pygame_gui.UIManager((1366, 1000), 'graphics/theme.json')
 
 
 def main():
@@ -39,6 +39,13 @@ def main():
     # ładowanie tła z mapą
     background = pygame.image.load('graphics/mapa.png').convert()
     background_rect = background.get_rect()
+    
+    ## Elementy GUI
+
+    ## Start/stop symulacji
+    start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 730), (250, 40)),
+                                            text='Rozpocznij symulację',
+                                            manager=manager)
 
     while True:
         for event in pygame.event.get():
@@ -52,7 +59,7 @@ def main():
         for ship in (Sztygar, Wilk, Burza, Piorun):
             ship.update()
        # wyświetlanie
-        DISPLAYSURF.fill(BLACK)
+        DISPLAYSURF.fill(manager.ui_theme.get_colour(None, None, 'dark_bg'))
 
         DISPLAYSURF.blit(background, background_rect)
 
