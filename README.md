@@ -14,3 +14,4 @@
 
 #### Operacje na plikach *.csv:
 - Wczytywanie współrzędnych portów z pliku const/ports.csv
+- Po kliknięciu w przycisk Stop - zapis współrzędnych do pliku zapis-symulacja.csv, plik zapisze się w głównym katalogu programu
