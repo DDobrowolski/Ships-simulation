@@ -9,13 +9,13 @@ from helpers.load_ports import load_from_csv
 pygame.init()
 
 WINDOWWIDTH = 1366
-WINDOWHEIGHT = 1000
+WINDOWHEIGHT = 950
 
 BLACK = (0, 0, 0)
 
 DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 pygame.display.set_caption('Symulator okrętów')
-manager = pygame_gui.UIManager((1366, 1000), 'graphics/theme.json')
+manager = pygame_gui.UIManager((1366, 950), 'graphics/theme.json')
 
 
 def main():
@@ -43,12 +43,59 @@ def main():
     ## Elementy GUI
 
     ## Armator 1
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 0), (250, 10)),
+                             text='..............................................',
+                             manager=manager)
+
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 10), (250, 40)),
                              text='ARMATOR 1',
                              manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 40), (250, 40)),
-                             text='Pieniądze:',
+                             text='Pieniądze: 2000 zł',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 70), (250, 10)),
+                             text='..............................................',
+                             manager=manager)
+
+    ## Armator 2
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 80), (250, 40)),
+                             text='ARMATOR 2',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 110), (250, 40)),
+                             text='Pieniądze: 2000 zł',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 140), (250, 10)),
+                             text='..............................................',
+                             manager=manager)
+
+    ## Armator 3
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 150), (250, 40)),
+                             text='ARMATOR 3',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 180), (250, 40)),
+                             text='Pieniądze: 2000 zł',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 210), (250, 10)),
+                             text='..............................................',
+                             manager=manager)
+
+    ## Armator 4
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 220), (250, 40)),
+                             text='ARMATOR 4',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 250), (250, 40)),
+                             text='Pieniądze: 2000 zł',
+                             manager=manager)
+
+    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 280), (250, 10)),
+                             text='..............................................',
                              manager=manager)
 
     ## Start/stop symulacji
