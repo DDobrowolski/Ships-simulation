@@ -28,14 +28,16 @@ class Port(Point):
     def containers_in(self):
         return self._containers_in
 
-    def _remove_specific_containers_out(self, destination):
+    def _remove_specific_containers_out(self, containers):
         self._containers_out = [
-            c for c in self._containers_out if c.destination_port is not destination]
+            c for c in self._containers_out if c.destination_port not in containers]
 
-    def get_specific_containers_out(self, destination):
-        output = [
-            c for c in self._containers_out if c.destination_port is destination]
-        self._remove_specific_containers_out(destination)
+    def get_specific_containers_out(self, destination, quantity):
+        output = []
+        for index, cont in enumerate(self._containers_out):
+            output.append(
+                cont) if index < quantity and cont.destination_port is destination else None
+        self._remove_specific_containers_out(output)
         return output
 
     def add_specific_containers_in(self, containers):

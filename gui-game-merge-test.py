@@ -15,21 +15,18 @@ BLACK = (0, 0, 0)
 
 DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
 pygame.display.set_caption('Symulator okrętów')
-manager = pygame_gui.UIManager(((WINDOWWIDTH, WINDOWHEIGHT)), 'graphics/theme.json')
+manager = pygame_gui.UIManager(
+    ((WINDOWWIDTH, WINDOWHEIGHT)), 'graphics/theme.json')
 
 
 def main():
     # Instancje portów ładowane z csv
     available_ports = [Gdynia, Malmo, Goteborg, Tallin] = load_from_csv()
     # Instancje statków
-    Sztygar = Ship('Sztygar', (220, 80), Malmo, None, None,
-                   None, None, None, None, available_ports)
-    Wilk = Ship('Wilk', (550, 80), Goteborg, None, None, None,
-                None, None, None, available_ports)
-    Burza = Ship('Burza', (200, 680), Tallin, None, None,
-                 None, None, None, None, available_ports)
-    Piorun = Ship('Piorun', (830, 600), Gdynia, None, None,
-                  None, None, None, None, available_ports)
+    Sztygar = Ship('Sztygar', (220, 80), Malmo, available_ports)
+    Wilk = Ship('Wilk', (550, 80), Goteborg, available_ports)
+    Burza = Ship('Burza', (200, 680), Tallin, available_ports)
+    Piorun = Ship('Piorun', (830, 600), Gdynia, available_ports)
 
     # ładowanie obrazu statku
     ship_img = pygame.image.load('graphics/ship.png').convert()
@@ -39,131 +36,117 @@ def main():
     # ładowanie tła z mapą
     background = pygame.image.load('graphics/mapa.png').convert()
     background_rect = background.get_rect()
-    
-    ## Elementy GUI
 
-    ## Armator 1
-    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 0), (250, 10)),
-                             text='..............................................',
-                             manager=manager)
+    # Elementy GUI
 
+    # Armator 1
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 10), (250, 40)),
-                             text='ARMATOR 1',
-                             manager=manager)
+                                text='ARMATOR 1',
+                                manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 40), (250, 40)),
-                             text='Pieniądze: 2000 zł',
-                             manager=manager)
+                                text='Pieniądze: 2000 zł',
+                                manager=manager)
 
-    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 70), (250, 10)),
-                             text='..............................................',
-                             manager=manager)
-
-    ## Armator 2
+    # Armator 2
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 80), (250, 40)),
-                             text='ARMATOR 2',
-                             manager=manager)
+                                text='ARMATOR 2',
+                                manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 110), (250, 40)),
-                             text='Pieniądze: 2000 zł',
-                             manager=manager)
+                                text='Pieniądze: 2000 zł',
+                                manager=manager)
 
-    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 140), (250, 10)),
-                             text='..............................................',
-                             manager=manager)
-
-    ## Armator 3
+    # Armator 3
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 150), (250, 40)),
-                             text='ARMATOR 3',
-                             manager=manager)
+                                text='ARMATOR 3',
+                                manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 180), (250, 40)),
-                             text='Pieniądze: 2000 zł',
-                             manager=manager)
+                                text='Pieniądze: 2000 zł',
+                                manager=manager)
 
-    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 210), (250, 10)),
-                             text='..............................................',
-                             manager=manager)
-
-    ## Armator 4
+    # Armator 4
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 220), (250, 40)),
-                             text='ARMATOR 4',
-                             manager=manager)
+                                text='ARMATOR 4',
+                                manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 250), (250, 40)),
-                             text='Pieniądze: 2000 zł',
-                             manager=manager)
+                                text='Pieniądze: 2000 zł',
+                                manager=manager)
 
-    pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 280), (250, 10)),
-                             text='..............................................',
-                             manager=manager)
-
-    ## Wybierz port
+    # Wybierz port
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 400), (250, 40)),
-                             text='Wybierz port:',
-                             manager=manager)
+                                text='Wybierz port:',
+                                manager=manager)
 
     select_port = pygame_gui.elements.UIDropDownMenu(options_list=['Gdynia', 'Malmo', 'Goteborg', 'Tallin'],
-                                    starting_option='Gdynia',
-                                    relative_rect=pygame.Rect((1075, 440), (250, 40)),
-                                    manager=manager)
+                                                     starting_option='Gdynia',
+                                                     relative_rect=pygame.Rect(
+                                                         (1075, 440), (250, 40)),
+                                                     manager=manager)
 
-    ## Wybierz statek
+    # Wybierz statek
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 480), (250, 40)),
-                             text='Wybierz statek:',
-                             manager=manager)
+                                text='Wybierz statek:',
+                                manager=manager)
 
     select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Piorun', 'Burza', 'Wilk', 'Sztygar'],
-                                    starting_option='Piorun',
-                                    relative_rect=pygame.Rect((1075, 520), (250, 40)),
-                                    manager=manager)
+                                                      starting_option='Piorun',
+                                                      relative_rect=pygame.Rect(
+                                                          (1075, 520), (250, 40)),
+                                                      manager=manager)
 
-    ## Wybierz armatora
+    # Wybierz armatora
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 560), (250, 40)),
-                             text='Wybierz armatora:',
-                             manager=manager)
+                                text='Wybierz armatora:',
+                                manager=manager)
 
     select_cargo = pygame_gui.elements.UIDropDownMenu(options_list=['Armator 1', 'Armator 2', 'Armator 3', 'Armator 4'],
-                                    starting_option='Armator 1',
-                                    relative_rect=pygame.Rect((1075, 600), (250, 40)),
-                                    manager=manager)                                    
+                                                      starting_option='Armator 1',
+                                                      relative_rect=pygame.Rect(
+                                                          (1075, 600), (250, 40)),
+                                                      manager=manager)
 
-    ## Start/stop symulacji
+    # Start/stop symulacji
     start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 695), (250, 40)),
-                                            text='Rozpocznij symulację',
-                                            manager=manager)
+                                                    text='Rozpocznij symulację',
+                                                    manager=manager)
 
-    ## Statystyki Gdynia
+    # Statystyki Gdynia
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((0, 768), (180, 40)),
-                             text='Statystyki Gdynia:',
-                             manager=manager)
+                                text='Statystyki Gdynia:',
+                                manager=manager)
     pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
-                            relative_rect=pygame.Rect((5, 805), (325, 150)),
-                            manager=manager)
-    ## Statystyki Malmo
+                                  relative_rect=pygame.Rect(
+                                      (5, 805), (325, 150)),
+                                  manager=manager)
+    # Statystyki Malmo
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((335, 768), (180, 40)),
-                             text='Statystyki Malmo:',
-                             manager=manager)
+                                text='Statystyki Malmo:',
+                                manager=manager)
     pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
-                            relative_rect=pygame.Rect((345, 805), (325, 150)),
-                            manager=manager)
+                                  relative_rect=pygame.Rect(
+                                      (345, 805), (325, 150)),
+                                  manager=manager)
 
-    ## Statystyki Goteborg
+    # Statystyki Goteborg
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((680, 768), (180, 40)),
-                             text='Statystyki Goteborg:',
-                             manager=manager)
+                                text='Statystyki Goteborg:',
+                                manager=manager)
     pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
-                            relative_rect=pygame.Rect((685, 805), (325, 150)),
-                            manager=manager)
+                                  relative_rect=pygame.Rect(
+                                      (685, 805), (325, 150)),
+                                  manager=manager)
 
-    ## Statystyki Tallin
+    # Statystyki Tallin
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1015, 768), (180, 40)),
-                             text='Statystyki Tallin:',
-                             manager=manager)
+                                text='Statystyki Tallin:',
+                                manager=manager)
     pygame_gui.elements.UITextBox(html_text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.",
-                            relative_rect=pygame.Rect((1025, 805), (325, 150)),
-                            manager=manager)
-
+                                  relative_rect=pygame.Rect(
+                                      (1025, 805), (325, 150)),
+                                  manager=manager)
 
     while True:
         for event in pygame.event.get():
