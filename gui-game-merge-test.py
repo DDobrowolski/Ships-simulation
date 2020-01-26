@@ -4,6 +4,7 @@ import pygame_gui
 from pygame import *
 from helpers.Vector2 import Vector2
 from models.Ship import Ship
+from models.Owner import Owner
 from helpers.load_ports import load_from_csv
 
 pygame.init()
@@ -22,12 +23,16 @@ manager = pygame_gui.UIManager(
 def main():
     # Instancje portów ładowane z csv
     available_ports = [Gdynia, Malmo, Goteborg, Tallin] = load_from_csv()
+    # Instancje armatorów
+    Rob = Owner('Rob', 200000)
+    Bob = Owner('Bob', 200000)
+    Mob = Owner('Mob', 200000)
+    Lob = Owner('Lob', 200000)
     # Instancje statków
-    Sztygar = Ship('Sztygar', (220, 80), Malmo, available_ports)
-    Wilk = Ship('Wilk', (550, 80), Goteborg, available_ports)
-    Burza = Ship('Burza', (200, 680), Tallin, available_ports)
-    Piorun = Ship('Piorun', (830, 600), Gdynia, available_ports)
-
+    Sztygar = Ship('Sztygar', (220, 80), Malmo, available_ports, Rob)
+    Wilk = Ship('Wilk', (550, 80), Goteborg, available_ports, Bob)
+    Burza = Ship('Burza', (200, 680), Tallin, available_ports, Mob)
+    Piorun = Ship('Piorun', (830, 600), Gdynia, available_ports, Lob)
     # ładowanie obrazu statku
     ship_img = pygame.image.load('graphics/ship.png').convert()
     ship_img = pygame.transform.scale(ship_img, (120, 37))
@@ -41,38 +46,38 @@ def main():
 
     # Armator 1
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 10), (250, 40)),
-                                text='ARMATOR 1',
+                                text=Rob.name,
                                 manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 40), (250, 40)),
-                                text='Pieniądze: 2000 zł',
+                                text=f'Pieniądze: ${Rob.cash}',
                                 manager=manager)
 
     # Armator 2
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 80), (250, 40)),
-                                text='ARMATOR 2',
+                                text=Bob.name,
                                 manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 110), (250, 40)),
-                                text='Pieniądze: 2000 zł',
+                                text=f'Pieniądze: ${Bob.cash}',
                                 manager=manager)
 
     # Armator 3
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 150), (250, 40)),
-                                text='ARMATOR 3',
+                                text=Mob.name,
                                 manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 180), (250, 40)),
-                                text='Pieniądze: 2000 zł',
+                                text=f'Pieniądze: ${Mob.cash}',
                                 manager=manager)
 
     # Armator 4
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 220), (250, 40)),
-                                text='ARMATOR 4',
+                                text=Lob.name,
                                 manager=manager)
 
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((1075, 250), (250, 40)),
-                                text='Pieniądze: 2000 zł',
+                                text=f'Pieniądze: ${Lob.cash}',
                                 manager=manager)
 
     # Wybierz port

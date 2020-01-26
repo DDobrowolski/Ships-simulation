@@ -7,7 +7,7 @@ from random import randint
 
 class Ship(Point):
 
-    def __init__(self, name, pos, destination, available_destinations=[], port=None, owner=None,  capacity=5000, condition=100, max_fuel=100, current_fuel=100):
+    def __init__(self, name, pos, destination, available_destinations=[], owner=None, port=None, capacity=5000, condition=100, max_fuel=100, current_fuel=100):
         super().__init__(pos, name)
         self._port = port
         self._owner = owner
@@ -54,8 +54,11 @@ class Ship(Point):
                   'condition:', self._condition, '%')
 
     def _unload_containers(self):
-        self._destination.add_specific_containers_in(
-            [c for c in self._containers if c.destination_port is self._destination])
+        containers_to_unload = [
+            c for c in self._containers if c.destination_port is self._destination]
+        # Adding cash to owner
+        self._owner.add_cash(len(containers_to_unload) * 10)
+        self._destination.add_specific_containers_in(containers_to_unload)
         self._containers = [
             c for c in self._containers if c.destination_port is not self._destination]
         # Generating new destination ports
@@ -66,6 +69,7 @@ class Ship(Point):
         containers_to_load = self._destination.get_specific_containers_out(
             destination, self._capacity - len(self._containers))
         self._containers += containers_to_load
+        self._owner.remove_cash(len(containers_to_load) * 10)
 
     def _dock(self):
         self._destination.free_docks -= 1
@@ -78,8 +82,7 @@ class Ship(Point):
         self._delay = 0
         self._move_interval = time.get_ticks() / 1000
         self._destination.free_docks += 1
-        self._current_fuel = self._max_fuel
-        self._condition = 100
+        self._repair_and_tank()
         print(f"{self.name} is sailing out...", self._destination.name, 'free docks: ',
               self._destination.free_docks)
 
@@ -88,6 +91,14 @@ class Ship(Point):
         print(self._name, 'containers count after loading:', len(self._containers))
 
         self.move()
+
+    def _repair_and_tank(self):
+        fuel_to_tank = self._max_fuel - self._current_fuel
+        condition_percentage_to_repair = 100 - self._condition
+        cash_to_remove = fuel_to_tank*1000 + condition_percentage_to_repair*3000
+        self._owner.remove_cash(cash_to_remove)
+        self._current_fuel = self._max_fuel
+        self._condition = 100
 
     def _is_at_destination(self):
         return self._position.get_distance_to(self._destination.position) <= 2
