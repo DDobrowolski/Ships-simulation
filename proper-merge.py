@@ -153,6 +153,7 @@ def main():
                                       (1025, 805), (325, 150)),
                                   manager=manager)
 
+
     while True:
         for event in pygame.event.get():
             if event.type == MOUSEBUTTONDOWN:
@@ -184,9 +185,15 @@ def main():
         DISPLAYSURF.blit(ship_img, Burza_rect)
         DISPLAYSURF.blit(ship_img, Piorun_rect)
 
+        manager.process_events(event)
+
+        clock = pygame.time.Clock()
+        time_delta = clock.tick(60)/1000.0
+        manager.process_events(event)
+        manager.update(time_delta)
         manager.draw_ui(DISPLAYSURF)
 
-        pygame.display.flip()
+        pygame.display.update()
 
 
 if __name__ == "__main__":
