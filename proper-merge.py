@@ -157,7 +157,7 @@ def main():
     while True:
         time_delta = clock.tick(60)/1000.0
         for event in pygame.event.get():
-            if event.type == MOUSEBUTTONDOWN:
+            if event.type == USEREVENT and event.user_type == 'ui_button_pressed' and event.ui_element == start_simulation:
                 for ship in (Sztygar, Wilk, Burza, Piorun):
                     ship.move()
             if event.type == QUIT:
