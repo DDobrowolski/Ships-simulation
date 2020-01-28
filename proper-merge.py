@@ -21,6 +21,7 @@ manager = pygame_gui.UIManager(
 
 
 def main():
+    clock = pygame.time.Clock()
     # Instancje portów ładowane z csv
     available_ports = [Gdynia, Malmo, Goteborg, Tallin] = load_from_csv()
     # Instancje armatorów
@@ -153,8 +154,8 @@ def main():
                                       (1025, 805), (325, 150)),
                                   manager=manager)
 
-
     while True:
+        time_delta = clock.tick(60)/1000.0
         for event in pygame.event.get():
             if event.type == MOUSEBUTTONDOWN:
                 for ship in (Sztygar, Wilk, Burza, Piorun):
@@ -187,9 +188,6 @@ def main():
 
         manager.process_events(event)
 
-        clock = pygame.time.Clock()
-        time_delta = clock.tick(60)/1000.0
-        manager.process_events(event)
         manager.update(time_delta)
         manager.draw_ui(DISPLAYSURF)
 
