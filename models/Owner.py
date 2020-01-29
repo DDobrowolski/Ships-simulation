@@ -3,6 +3,9 @@ class Owner:
         self._name = name
         self._cash = init_cash
 
+    def to_dict(self):
+        return {'nazwa': self.name, 'srodki': self._cash}
+
     @property
     def name(self):
         return self._name

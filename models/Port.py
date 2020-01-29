@@ -8,6 +8,9 @@ class Port(Point):
         self._containers_out = containers_out
         self._containers_in = containers_in
 
+    def to_dict(self):
+        return {'nazwa': self.name, 'kontenery_wejscie': len(self._containers_in), 'kontenery_wyjscie': len(self._containers_out)}
+
     @property
     def free_docks(self):
         return self._free_docks

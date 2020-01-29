@@ -24,6 +24,17 @@ class Ship(Point):
         self._delay = 0
         self._move_interval = time.get_ticks() / 1000
 
+    def to_dict(self):
+        return {
+            'nazwa': self.name,
+            'pozycja': self.position.as_tuple(),
+            'kontenery': len(self._containers),
+            'armator': self._owner.name,
+            'paliwo': f"{self._current_fuel}/{self._max_fuel}",
+            'stan': f"{self._condition}/100%",
+            'cel': self._destination.name
+        }
+
     def move(self):
         self._heading = Vector2.from_points(
             self.position, self._destination.position)

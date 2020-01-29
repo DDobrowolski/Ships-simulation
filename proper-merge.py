@@ -6,6 +6,7 @@ from helpers.Vector2 import Vector2
 from models.Ship import Ship
 from models.Owner import Owner
 from helpers.load_ports import load_from_csv
+from helpers.save_sim import save_sim_to_json
 
 pygame.init()
 
@@ -29,11 +30,13 @@ def main():
     Bob = Owner('Bob', 200000)
     Mob = Owner('Mob', 200000)
     Lob = Owner('Lob', 200000)
+    owners = [Rob, Bob, Mob, Lob]
     # Instancje statków
     Sztygar = Ship('Sztygar', (220, 80), Malmo, available_ports, Rob)
     Wilk = Ship('Wilk', (550, 80), Goteborg, available_ports, Bob)
     Burza = Ship('Burza', (200, 680), Tallin, available_ports, Mob)
     Piorun = Ship('Piorun', (830, 600), Gdynia, available_ports, Lob)
+    ships = [Sztygar, Wilk, Burza, Piorun]
     # ładowanie obrazu statku
     ship_img = pygame.image.load('graphics/ship.png').convert()
     ship_img = pygame.transform.scale(ship_img, (120, 37))
@@ -115,9 +118,9 @@ def main():
                                                       manager=manager)
 
     # Start/stop symulacji
-    start_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 695), (250, 40)),
-                                                    text='Rozpocznij symulację',
-                                                    manager=manager)
+    start_stop_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 695), (250, 40)),
+                                                         text='Start/Stop symulacji',
+                                                         manager=manager)
 
     # Statystyki Gdynia
     pygame_gui.elements.UILabel(relative_rect=pygame.Rect((0, 768), (180, 40)),
@@ -154,12 +157,19 @@ def main():
                                       (1025, 805), (325, 150)),
                                   manager=manager)
 
+    is_running = False
     while True:
         time_delta = clock.tick(60)/1000.0
         for event in pygame.event.get():
-            if event.type == USEREVENT and event.user_type == 'ui_button_pressed' and event.ui_element == start_simulation:
-                for ship in (Sztygar, Wilk, Burza, Piorun):
-                    ship.move()
+            if event.type == USEREVENT and event.user_type == 'ui_button_pressed' and event.ui_element == start_stop_simulation:
+                if not is_running:
+                    is_running = True
+                    for ship in ships:
+                        ship.move()
+                elif is_running:
+                    save_sim_to_json(ships, owners, available_ports)
+                    pygame.quit()
+                    sys.exit()
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
