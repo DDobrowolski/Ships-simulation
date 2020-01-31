@@ -19,7 +19,7 @@ class Ship(Point):
         self._heading = Vector2()
         self._destination = destination
         self._clock = time.Clock()
-        self._speed = 200
+        self._speed = 100
         self._available_destinations = available_destinations
         self._delay = 0
         self._move_interval = time.get_ticks() / 1000
@@ -34,6 +34,9 @@ class Ship(Point):
             'stan': f"{self._condition}/100%",
             'cel': self._destination.name
         }
+
+    def to_string(self):
+        return f"nazwa: {self.name},<br/>kontenery: {len(self._containers)},<br/>armator: {self._owner.name},<br/>paliwo: {self._current_fuel}/{self._max_fuel},<br/>stan: {self._condition}/100%,<br/>cel: {self._destination.name}"
 
     def move(self):
         self._heading = Vector2.from_points(

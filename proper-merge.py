@@ -7,7 +7,7 @@ from models.Ship import Ship
 from models.Owner import Owner
 from helpers.load_ports import load_from_csv
 from helpers.save_sim import save_sim_to_json
-from helpers.gui_gen import generate_gui
+from helpers.GUI import GUI
 
 pygame.init()
 
@@ -38,6 +38,7 @@ def main():
     Burza = Ship('Burza', (200, 680), Tallin, available_ports, Mob)
     Piorun = Ship('Piorun', (830, 600), Gdynia, available_ports, Lob)
     ships = [Sztygar, Wilk, Burza, Piorun]
+
     # ładowanie obrazu statku
     ship_img = pygame.image.load('graphics/ship.png').convert()
     ship_img = pygame.transform.scale(ship_img, (120, 37))
@@ -48,7 +49,8 @@ def main():
     background_rect = background.get_rect()
 
     # Elementy GUI
-    generate_gui(manager, Rob, Bob, Mob, Lob)
+    gui = GUI(manager, owners, ships)
+    gui.generate_main_gui()
     # Start/stop symulacji
     start_stop_simulation = pygame_gui.elements.UIButton(relative_rect=pygame.Rect((1075, 695), (250, 40)),
                                                          text='Start/Stop symulacji',
@@ -57,21 +59,26 @@ def main():
     while True:
         time_delta = clock.tick(60)/1000.0
         for event in pygame.event.get():
-            if event.type == USEREVENT and event.user_type == 'ui_button_pressed' and event.ui_element == start_stop_simulation:
-                if not is_running:
-                    is_running = True
-                    for ship in ships:
-                        ship.move()
-                elif is_running:
-                    save_sim_to_json(ships, owners, available_ports)
-                    pygame.quit()
-                    sys.exit()
+            if event.type == USEREVENT:
+                if hasattr(event, 'user_type') and event.user_type == 'ui_button_pressed' and event.ui_element == start_stop_simulation:
+                    if not is_running:
+                        is_running = True
+                        for ship in ships:
+                            ship.move()
+                    elif is_running:
+                        save_sim_to_json(ships, owners, available_ports)
+                        pygame.quit()
+                        sys.exit()
+                elif event == Owner.cash_event:
+                    gui.update_owners_stats()
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
 
         for ship in (Sztygar, Wilk, Burza, Piorun):
             ship.update()
+
+        gui.update_ships_stats()
        # wyświetlanie
         DISPLAYSURF.fill(manager.ui_theme.get_colour(None, None, 'dark_bg'))
 
@@ -93,8 +100,8 @@ def main():
         DISPLAYSURF.blit(ship_img, Piorun_rect)
 
         manager.process_events(event)
-
         manager.update(time_delta)
+
         manager.draw_ui(DISPLAYSURF)
 
         pygame.display.update()
