@@ -33,3 +33,6 @@
 
 #### Pliki z zapisem symulacji:
 ![Screenshot](graphics/ZAPIS.png)
+
+#### Film z działaniem symulacji:
+[![Działanie symulacji](http://i.imgur.com/Ot5DWAW.png)](https://youtu.be/gyGOy3IX3tI?t=3s "Działanie symulacji")
