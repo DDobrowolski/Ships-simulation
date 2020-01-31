@@ -25,4 +25,11 @@
 - Wczytywanie współrzędnych portów z pliku const/ports.csv
 - Po kliknięciu w przycisk Start/Stop symulacji - zapis danych symulacji do pliku *.json, pliku tworzone są w katalogu simulations w formacie data_godzina.json
 
+#### Działanie programu z opisem:
 ![Screenshot](graphics/GUI.png)
+
+#### Statystyki generowane w konsoli Pythona:
+![Screenshot](graphics/STAT.png)
+
+#### Pliki z zapisem symulacji:
+![Screenshot](graphics/ZAPIS.png)
