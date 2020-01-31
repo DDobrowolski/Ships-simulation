@@ -19,8 +19,12 @@
 - Logika i obiekty znajdują się w plikach *.py w katalogu models
 - Komponenty odpowiedzialne za: GUI, ładowanie portów z pliku CSV, zapis symulacji do pliku oraz pływanie statków z punktu A do B znajdują się w katalogu helpers
 - Pliki graficzne odpowiedzialne za mapy i GUI znajdują się w katalogu graphics
-- Współrzędne portów znajdują się w pliku ports.csv w folderze const.
+- Współrzędne portów znajdują się w pliku ports.csv w folderze const
 
 #### Operacje na plikach *.csv i *.json:
 - Wczytywanie współrzędnych portów z pliku const/ports.csv
 - Po kliknięciu w przycisk Start/Stop symulacji - zapis danych symulacji do pliku *.json, pliku tworzone są w katalogu simulations w formacie data_godzina.json
+
+![GUI](https://github.com/DDobrowolski/Ships-simulation/tree/master/graphics/GUI.png)
+![Statystyki w terminalu](https://github.com/DDobrowolski/Ships-simulation/tree/master/graphics/STAT.png)
+![Zapisane pliki symulacji](https://github.com/DDobrowolski/Ships-simulation/tree/master/graphics/ZAPIS.png)
