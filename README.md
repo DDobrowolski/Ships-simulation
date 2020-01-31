@@ -25,6 +25,6 @@
 - Wczytywanie współrzędnych portów z pliku const/ports.csv
 - Po kliknięciu w przycisk Start/Stop symulacji - zapis danych symulacji do pliku *.json, pliku tworzone są w katalogu simulations w formacie data_godzina.json
 
-[[https://github.com/DDobrowolski/Ships-simulation/tree/master/graphics/GUI.png|alt=GUI]]
-[[https://github.com/DDobrowolski/Ships-simulation/tree/master/graphics/STAT.png|alt=Statystyki]]
-[[https://github.com/DDobrowolski/Ships-simulation/tree/master/graphics/ZAPIS.png|alt=Zapis]]
+[[https://github.com/DDobrowolski/Ships-simulation/blob/master/graphics/GUI.png|alt=GUI]]
+[[https://github.com/DDobrowolski/Ships-simulation/blob/master/graphics/STAT.png|alt=Statystyki]]
+[[https://github.com/DDobrowolski/Ships-simulation/blob/master/graphics/ZAPIS.png|alt=Zapis]]
